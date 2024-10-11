@@ -1,0 +1,32 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note {note: '1'}
+    activate server
+    server-->>browser: Redirect https://studies.cs.helsinki.fi/exampleapp/notes
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate server
+    server-->>browser: HTML Document
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: the JavaScript file
+    deactivate server
+
+    Note right of browser: xhttp.open("GET", "/exampleapp/data.json", true)
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{"content":"asd","date":"2024-10-10T23:34:25.849Z"}, ... ]
+    deactivate server
+
+    Note right of browser: `xhttp.onreadystatechange` event executes a callback function
