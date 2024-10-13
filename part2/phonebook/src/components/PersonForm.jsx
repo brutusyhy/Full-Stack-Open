@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function PersonForm({onSubmit}) {
+export default function PersonForm({onAdd}) {
     const nameRef = React.useRef(null);
     const numberRef = React.useRef(null);
     function handleSubmit(event) {
         event.preventDefault();
-        onSubmit({
+        onAdd({
             name: nameRef.current.value,
             number: numberRef.current.value
         });
